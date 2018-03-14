@@ -1,0 +1,9 @@
+.DS_Store
+*~
+*.log
+*.js.meta
+node_modules/
+build/
+
+# misc
+.DS_Store
