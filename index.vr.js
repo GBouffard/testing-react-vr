@@ -6,29 +6,47 @@ import {
   Text,
   View,
 } from 'react-vr';
+import Canvas from './components/Canvas';
+import UI from './components/UI';
 
-export default class testing_react_vr extends React.Component {
+const Config = [
+  {
+    key: 0,
+    imageSrc: 'chess-world.jpg',
+    buttonImageSrc: 'button-00.png',
+  },
+  {
+    key: 1,
+    imageSrc: 'broken-house.jpg',
+    buttonImageSrc: 'button-01.png',
+  },
+  {
+    key: 2,
+    imageSrc: 'medieval-place.jpg',
+    buttonImageSrc: 'button-02.png',
+  }
+];
+
+export default class HelloVR extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      src: 'reactconf_00.jpg'
+    }
+  }
+
+
   render() {
     return (
       <View>
-        <Pano source={asset('chess-world.jpg')}/>
-        <Text
-          style={{
-            backgroundColor: '#777879',
-            fontSize: 0.8,
-            fontWeight: '400',
-            layoutOrigin: [0.5, 0.5],
-            paddingLeft: 0.2,
-            paddingRight: 0.2,
-            textAlign: 'center',
-            textAlignVertical: 'center',
-            transform: [{translate: [0, 0, -3]}],
-          }}>
-          hello
-        </Text>
+        <Canvas src={this.state.src}/>
+        <UI buttonConfig={Config} onClick={(key) =>{
+          this.setState({src: Config[key].imageSrc});
+        }} />
       </View>
     );
   }
 };
 
-AppRegistry.registerComponent('testing_react_vr', () => testing_react_vr);
+AppRegistry.registerComponent('HelloVR', () => HelloVR);
